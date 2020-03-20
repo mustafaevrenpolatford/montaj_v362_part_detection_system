@@ -26,7 +26,7 @@ void mosq_bitir(struct mosquitto *mosq);
 using namespace cv;
 using namespace std;
 
-#define PWS_Server_PORT 3334
+#define pvs_Server_PORT 3334
 
 void baglanti_kur(int *sonuc);
 std::string goruntuyu_isle(cv::Mat goruntu);
@@ -42,7 +42,7 @@ void mosq_bitir(struct mosquitto *mosq);
 int counter = 0;
 int cita_sonucu = 0;
 const char ayrac = ':';
-const char *pws_gelen_veri_isimleri[] = {"VIN_NUMBER", "waste", "date", "hour", "minute", "second", "colour_car", "rim", "front_door_handle", "mirror_garnish", "rear_door_handle", "side_moulding"};
+const char *pvs_gelen_veri_isimleri[] = {"VIN_NUMBER", "waste", "date", "hour", "minute", "second", "colour_car", "rim", "front_door_handle", "mirror_garnish", "rear_door_handle", "side_moulding"};
 const char *video_stream_adresi = "rtsp://admin:Test1234@10.14.37.205:80";
 const char *goruntu_kayit_dizini = "/home/gi/montaj_v362/sonuclar";
 cv::VideoCapture capture;
@@ -80,20 +80,20 @@ int main(int argc, char const *argv[])
 
 	/*  Server Kur */
 	syslog(LOG_INFO, "ack: int: '%d' - char:'%c' \n", ack, ack);
-	syslog(LOG_INFO, "PWS Serveri kuruluyor: Server Port:'%d'\n", PWS_Server_PORT);
+	syslog(LOG_INFO, "pvs Serveri kuruluyor: Server Port:'%d'\n", pvs_Server_PORT);
 	struct sockaddr_in address;
 	int server_fd, conn_fd;
 	int valread = 0;
 	char buffer_server[1024] = {0};
 	int addrlen = sizeof(address);
 	int r,g,b;
-	sonuc = server_kur(&server_fd, &address, addrlen, PWS_Server_PORT);
+	sonuc = server_kur(&server_fd, &address, addrlen, pvs_Server_PORT);
 	if (sonuc < 0)
 	{
 		syslog(LOG_INFO, "Server kurulumu hatasi.\n");
 		return -1;
 	}
-	syslog(LOG_INFO, "Server kuruldu: Server Port: '%d'\n", PWS_Server_PORT);
+	syslog(LOG_INFO, "Server kuruldu: Server Port: '%d'\n", pvs_Server_PORT);
 	std::string sonucText ;
 	while (1)
 	{
@@ -164,8 +164,8 @@ int main(int argc, char const *argv[])
 		}
 		else
 		{
-			std::string pws_cita_bilgisi = degerler[11];
-			sonucText = "Sus citasi yanlis takildi. PVS:" + pws_cita_bilgisi;
+			std::string pvs_cita_bilgisi = degerler[11];
+			sonucText = "Sus citasi yanlis takildi. PVS:" + pvs_cita_bilgisi;
 			syslog(LOG_INFO, "***Kamera kontrol sonucu ile PVS bilgileri farkli. Lutfen sus citasini kontrol edin.***");
 			cita_sonucu = 0;
 			r = 255;
@@ -411,7 +411,7 @@ char **str_split(char *a_str, const char a_delim)
 
 		for (i = 0; i < count - 1; ++i)
 		{
-			syslog(LOG_INFO, "%s(): %s: '%s'", __func__, pws_gelen_veri_isimleri[i], result[i]);
+			syslog(LOG_INFO, "%s(): %s: '%s'", __func__, pvs_gelen_veri_isimleri[i], result[i]);
 		}
 		return result;
 	}
