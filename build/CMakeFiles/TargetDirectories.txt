@@ -1,0 +1,3 @@
+/home/gi/montaj_v362/build/CMakeFiles/rebuild_cache.dir
+/home/gi/montaj_v362/build/CMakeFiles/montaj_v362_parca_kontrol_sistemi.dir
+/home/gi/montaj_v362/build/CMakeFiles/edit_cache.dir

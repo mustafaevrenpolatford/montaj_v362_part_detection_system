@@ -1,0 +1,13 @@
+UYGULAMA=resim
+
+
+$(UYGULAMA): $(UYGULAMA).o
+	gcc -o $(UYGULAMA) $(UYGULAMA).o `pkg-config --libs gtk+-3.0`
+
+
+$(UYGULAMA).o: $(UYGULAMA).c
+	gcc  -c $(UYGULAMA).c `pkg-config --cflags gtk+-3.0`
+
+
+clean:
+	rm -rf *.o $(UYGULAMA)
