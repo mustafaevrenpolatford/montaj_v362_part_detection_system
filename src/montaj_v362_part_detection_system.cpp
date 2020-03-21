@@ -1,26 +1,7 @@
-#include <cmath>
-#include <csignal>
-#include <iostream>
-#include <sstream>
-#include <string>
-#include <syslog.h>
-#include <time.h>
-#include <unistd.h>
-#include <vector>
-#include <unistd.h>
-#include <stdio.h>
-#include <sys/socket.h>
-#include <stdlib.h>
-#include <netinet/in.h>
-#include <string.h>
-#include <stdbool.h>
-#include <assert.h>
-#include <sys/time.h>
-#include <fcntl.h>
-#include <opencv2/opencv.hpp>
-#include <mosquitto.h>
+#include"includelar.h"
+
 struct mosquitto *mosq_baslat(char *mq_sunucu, char *mq_port, char *mq_kullanici, char *mq_sifre, char *mq_id);
-void mosq_mesaj_gonder(struct mosquitto *mosq, char *mesaj, char *topic, bool *mq_baglantisi_kur);
+
 void mosq_bitir(struct mosquitto *mosq);
 
 using namespace cv;
@@ -28,14 +9,12 @@ using namespace std;
 
 #define pvs_Server_PORT 3334
 
-void baglanti_kur(int *sonuc);
 std::string goruntuyu_isle(cv::Mat goruntu);
 char **str_split(char *a_str, const char a_delim);
 int server_kur(int *server_fd, struct sockaddr_in *address_ptr, int addrlen, int PORT);
 void goruntu_kaydet(cv::Mat goruntu_RGB);
 cv::Mat kameradan_goruntu_al();
 struct mosquitto *mosq_baslat(char *mq_sunucu, char *mq_port,char* mq_kullanici, char *mq_sifre, char *mq_id);
-void mosq_mesaj_gonder(struct mosquitto *mosq, char *mesaj, char *topic, bool *mq_baglantisi_kur);
 void mosq_bitir(struct mosquitto *mosq);
 
 int counter = 0;
@@ -190,19 +169,7 @@ int main(int argc, char const *argv[])
 	return 0;
 }
 
-void baglanti_kur(int *sonuc)
-{
-	capture.set(CAP_PROP_BUFFERSIZE, 1);
-	int frameRate = capture.get(CAP_PROP_FPS);
-	capture.set(CAP_PROP_POS_FRAMES, frameRate);
 
-	if (!capture.open(video_stream_adresi))
-	{
-		*sonuc = 0;
-		return;
-	}
-	*sonuc = 1;
-}
 
 string goruntuyu_isle(cv::Mat goruntu)
 {
@@ -420,47 +387,9 @@ char **str_split(char *a_str, const char a_delim)
 
 
 
-cv::Mat kameradan_goruntu_al()
-{
-	int sonuc;
-	cv::Mat goruntu_RGB;
 
-	baglanti_kur(&sonuc);
-	if (sonuc == 0)
-	{
-		syslog(LOG_INFO, "%s(): Kamera acilamadi.", __func__);
-		return goruntu_RGB;
-	}
-	syslog(LOG_INFO, "%s(): Kamera acildi.", __func__);
 
-	capture.read(goruntu_RGB);
 
-	if (counter < 10000)
-	{
-		counter++;
-	}
-	else
-	{
-		counter = 0;
-	}
-
-	capture.release();
-	return goruntu_RGB;
-}
-
-void mosq_mesaj_gonder(struct mosquitto *mosq, char *mesaj, char *topic, bool *mq_baglantisi_kur)
-{
-	int hata = mosquitto_publish(mosq, NULL, topic, strlen(mesaj), mesaj, 0, true);
-	if (hata)
-	{
-		syslog(LOG_INFO, "mosquitto'ya mesaj gonderilemedi!: %s", mesaj);
-		*mq_baglantisi_kur = 1;
-	}
-	//  We need a short delay here, to prevent the Mosquito library being
-	//  torn down by the operating system before all the network operations
-	//  are finished.
-	usleep(1000); // cpu
-}
 
 struct mosquitto *mosq_baslat(char *mq_sunucu, char *mq_port, char *mq_kullanici, char *mq_sifre, char *mq_id)
 {

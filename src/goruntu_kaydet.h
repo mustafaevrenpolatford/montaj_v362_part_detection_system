@@ -1,3 +1,8 @@
+#ifndef _GORUNTUYU_KAYDET_
+#define _GORUNTUYU_KAYDET_
+
+#include "includelar.h"
+
 void goruntu_kaydet(cv::Mat goruntu_RGB)
 {
 
@@ -23,3 +28,5 @@ void goruntu_kaydet(cv::Mat goruntu_RGB)
 	sprintf(goruntu_ismi, "%s%s%s%s", goruntu_kayit_dizini, "/goruntu_", temp.c_str(), ".jpeg");
 	imwrite(goruntu_ismi, goruntu_RGB);
 }
+
+#endif
