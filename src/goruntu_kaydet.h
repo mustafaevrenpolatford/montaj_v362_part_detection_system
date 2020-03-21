@@ -1,7 +1,7 @@
 void goruntu_kaydet(cv::Mat goruntu_RGB)
 {
 
-	int x1_baslangic = 1453;
+	int x1_baslangic = 1455;
 	int y1_baslangic = 686;
 	int x2_baslangic = 1426;
 	int y2_baslangic = 610;
