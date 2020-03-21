@@ -1,5 +1,5 @@
-#ifndef _KAMERA_BAGLANTI_KUR
-#define _KAMERA_BAGLANTI_KUR
+#ifndef _KAMERA_BAGLANTI_KUR_
+#define _KAMERA_BAGLANTI_KUR_
 
 #include <opencv2/opencv.hpp>
 const char *video_stream_adresi = "rtsp://admin:Test1234@10.14.37.205:80";
