@@ -3,6 +3,8 @@
 
 #include "includelar.h"
 
+extern const char *video_stream_adresi = "rtsp://admin:Test1234@10.14.37.205:80";
+
 void baglanti_kur(int *sonuc)
 {
 	capture.set(CAP_PROP_BUFFERSIZE, 1);

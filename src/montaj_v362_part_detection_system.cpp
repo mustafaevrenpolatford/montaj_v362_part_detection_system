@@ -1,8 +1,12 @@
 #include"includelar.h"
+#include"baglanti_kur.h"
+#include"goruntu_kaydet.h"
+#include"mosq_mesaj_gonder.h"
+#include"kameradan_goruntu_al.h"
 
 struct mosquitto *mosq_baslat(char *mq_sunucu, char *mq_port, char *mq_kullanici, char *mq_sifre, char *mq_id);
 
-void mosq_bitir(struct mosquitto *mosq);
+
 
 using namespace cv;
 using namespace std;
@@ -15,14 +19,14 @@ int server_kur(int *server_fd, struct sockaddr_in *address_ptr, int addrlen, int
 void goruntu_kaydet(cv::Mat goruntu_RGB);
 cv::Mat kameradan_goruntu_al();
 struct mosquitto *mosq_baslat(char *mq_sunucu, char *mq_port,char* mq_kullanici, char *mq_sifre, char *mq_id);
-void mosq_bitir(struct mosquitto *mosq);
+
 
 int counter = 0;
 int cita_sonucu = 0;
 const char ayrac = ':';
 const char *pvs_gelen_veri_isimleri[] = {"VIN_NUMBER", "waste", "date", "hour", "minute", "second", "colour_car", "rim", "front_door_handle", "mirror_garnish", "rear_door_handle", "side_moulding"};
-const char *video_stream_adresi = "rtsp://admin:Test1234@10.14.37.205:80";
-const char *goruntu_kayit_dizini = "/home/gi/montaj_v362/sonuclar";
+
+
 cv::VideoCapture capture;
 
 struct mosquitto *mosq = NULL;
@@ -430,10 +434,4 @@ struct mosquitto *mosq_baslat(char *mq_sunucu, char *mq_port, char *mq_kullanici
 	return mosq;
 }
 
-void mosq_bitir(struct mosquitto *mosq)
-{
-	syslog(LOG_INFO, "Mosquitto baglantisi sonlandiriliyor.\n");
-	mosquitto_disconnect(mosq);
-	mosquitto_destroy(mosq);
-	mosquitto_lib_cleanup();
-}
+

@@ -2,6 +2,7 @@
 #define _GORUNTUYU_KAYDET_
 
 #include "includelar.h"
+extern const char *goruntu_kayit_dizini = "/home/gi/montaj_v362/sonuclar";
 
 void goruntu_kaydet(cv::Mat goruntu_RGB)
 {

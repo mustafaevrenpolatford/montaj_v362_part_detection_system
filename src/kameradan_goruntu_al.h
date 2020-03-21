@@ -2,6 +2,7 @@
 #define _KAMERADAN_GORUNTU_AL_
 
 #include "includelar.h"
+
 cv::Mat kameradan_goruntu_al()
 {
 	int sonuc;
