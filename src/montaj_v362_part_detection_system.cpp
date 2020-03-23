@@ -19,6 +19,7 @@
 #include <fcntl.h>
 #include <opencv2/opencv.hpp>
 #include <mosquitto.h>
+#include "kamera_baglanti_kur.hpp"
 struct mosquitto *mosq_baslat(char *mq_sunucu, char *mq_port, char *mq_kullanici, char *mq_sifre, char *mq_id);
 void mosq_mesaj_gonder(struct mosquitto *mosq, char *mesaj, char *topic, bool *mq_baglantisi_kur);
 void mosq_bitir(struct mosquitto *mosq);
@@ -406,41 +407,8 @@ char **str_split(char *a_str, const char a_delim)
 	return NULL;
 }
 
-double what_time_is_it_now()
-{
-	struct timeval time;
-	if (gettimeofday(&time, NULL))
-	{
-		return 0;
-	}
-	return (double)time.tv_sec + (double)time.tv_usec * .000001;
-}
-
-void goruntu_kaydet(cv::Mat goruntu_RGB)
-{
-
-	int x1_baslangic = 1453;
-	int y1_baslangic = 686;
-	int x2_baslangic = 1426;
-	int y2_baslangic = 610;
-
-	Rect RectangleToDraw(x2_baslangic, y2_baslangic, 10, 10);
-	rectangle(goruntu_RGB, RectangleToDraw.tl(), RectangleToDraw.br(), 
-	Scalar(0, 0, 255), 2, 8, 0);
-
-	Rect RectangleToDraw2(x1_baslangic, y1_baslangic, 10, 10);
-	rectangle(goruntu_RGB, RectangleToDraw2.tl(), RectangleToDraw2.br(), 
-	Scalar(0, 0, 255), 2, 8, 0);
 
 
-	char goruntu_ismi[256];
-	std::string temp = to_string(counter);
-	sprintf(goruntu_ismi, "%s%s%s", "goruntu_", temp.c_str(), ".jpeg");
-	syslog(LOG_INFO, "%s(): goruntu basarali bir sekilde alindi ve kaydedildi: '%s'.", __func__, goruntu_ismi);
-	mosq_mesaj_gonder(mosq, goruntu_ismi, mq_topic, &mq_baglantisi_kur);
-	sprintf(goruntu_ismi, "%s%s%s%s", goruntu_kayit_dizini, "/goruntu_", temp.c_str(), ".jpeg");
-	imwrite(goruntu_ismi, goruntu_RGB);
-}
 
 cv::Mat kameradan_goruntu_al()
 {
