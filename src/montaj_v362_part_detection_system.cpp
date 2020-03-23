@@ -28,7 +28,6 @@ using namespace std;
 
 #define pvs_Server_PORT 3334
 
-void baglanti_kur(int *sonuc);
 std::string goruntuyu_isle(cv::Mat goruntu);
 char **str_split(char *a_str, const char a_delim);
 int server_kur(int *server_fd, struct sockaddr_in *address_ptr, int addrlen, int PORT);
@@ -448,7 +447,7 @@ cv::Mat kameradan_goruntu_al()
 	int sonuc;
 	cv::Mat goruntu_RGB;
 
-	baglanti_kur(&sonuc);
+	baglanti_kur(&sonuc,video_stream_adresi);
 	if (sonuc == 0)
 	{
 		syslog(LOG_INFO, "%s(): Kamera acilamadi.", __func__);

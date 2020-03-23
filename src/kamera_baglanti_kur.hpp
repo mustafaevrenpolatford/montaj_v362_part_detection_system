@@ -2,8 +2,8 @@
 #define _KAMERA_BAGLANTI_KUR_
 
 #include <opencv2/opencv.hpp>
-const char *video_stream_adresi = "rtsp://admin:Test1234@10.14.37.205:80";
-void baglanti_kur(int *sonuc)
+
+void baglanti_kur(int *sonuc, char *video_stream_adresi)
 {
 	capture.set(CAP_PROP_BUFFERSIZE, 1);
 	int frameRate = capture.get(CAP_PROP_FPS);
