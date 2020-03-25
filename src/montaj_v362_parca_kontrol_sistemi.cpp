@@ -241,7 +241,7 @@ string goruntuyu_isle(cv::Mat goruntu)
 		syslog(LOG_INFO, "Goruntu okuma hatasi / Network baglanti sorunu\n");
 		capture.release();
 		sleep(4);
-		capture.open(video_stream_adresi);
+		kamera_baglanti_kur(&sonuc);
 		syslog(LOG_INFO, "Kamera kapatildi ve kamera acma denendi.");
 		//return;
 	}
