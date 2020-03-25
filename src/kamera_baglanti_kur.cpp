@@ -15,10 +15,10 @@
 #include <opencv2/opencv.hpp>
 #include <mosquitto.h>
 
-const char *video_stream_adresi = "rtsp://admin:Test1234@10.14.37.205:80";
+extern const char *video_stream_adresi = "rtsp://admin:Test1234@10.14.37.205:80";
 //int sonuc;
 using namespace cv;
-//cv::VideoCapture capture;
+extern cv::VideoCapture capture;
 
 void kamera_baglanti_kur(int *sonuc)
 {
