@@ -44,7 +44,7 @@ int counter = 0;
 int cita_sonucu = 0;
 const char ayrac = ':';
 const char *pvs_gelen_veri_isimleri[] = {"VIN_NUMBER", "waste", "date", "hour", "minute", "second", "colour_car", "rim", "front_door_handle", "mirror_garnish", "rear_door_handle", "side_moulding"};
-const char *video_stream_adresi = "rtsp://admin:Test1234@10.14.37.205:80";
+//const char *video_stream_adresi = "rtsp://admin:Test1234@10.14.37.205:80";
 const char *goruntu_kayit_dizini = "/home/gi/montaj_v362/sonuclar";
 cv::VideoCapture capture;
 

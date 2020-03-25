@@ -23,7 +23,7 @@ message("mosquitto kutuphanesi bulundu.")
 message("mosquitto kutuphanesi dizini: ${Mosquitto_LIBS}")
 
 #Build
-add_executable(montaj_v362_parca_kontrol_sistemi ./src/montaj_v362_parca_kontrol_sistemi.cpp ./src/kamera_baglanti_kur.hpp)
+add_executable(montaj_v362_parca_kontrol_sistemi ./src/montaj_v362_parca_kontrol_sistemi.cpp ./src/kamera_baglanti_kur.cpp)
 
 #Link
 target_link_libraries(montaj_v362_parca_kontrol_sistemi ${Mosquitto_LIBS} ${OpenCV_LIBS})
