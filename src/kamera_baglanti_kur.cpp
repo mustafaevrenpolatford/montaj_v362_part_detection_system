@@ -14,11 +14,8 @@
 #include <string.h>
 #include <opencv2/opencv.hpp>
 #include <mosquitto.h>
+#include"kamera_baglanti_kur.hpp"
 
-extern const char *video_stream_adresi = "rtsp://admin:Test1234@10.14.37.205:80";
-//int sonuc;
-using namespace cv;
-extern cv::VideoCapture capture;
 
 void kamera_baglanti_kur(int *sonuc)
 {
