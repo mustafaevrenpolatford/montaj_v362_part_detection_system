@@ -3,6 +3,6 @@
 
 #include <opencv2/opencv.hpp>
 
-void baglanti_kur(int *sonuc);
+void kamera_baglanti_kur(int *sonuc);
 
 #endif

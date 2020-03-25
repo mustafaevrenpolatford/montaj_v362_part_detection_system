@@ -20,6 +20,7 @@
 #include <opencv2/opencv.hpp>
 #include <mosquitto.h>
 #include "kamera_baglanti_kur.hpp"
+
 struct mosquitto *mosq_baslat(char *mq_sunucu, char *mq_port, char *mq_kullanici, char *mq_sifre, char *mq_id);
 void mosq_mesaj_gonder(struct mosquitto *mosq, char *mesaj, char *topic, bool *mq_baglantisi_kur);
 void mosq_bitir(struct mosquitto *mosq);
@@ -415,7 +416,7 @@ cv::Mat kameradan_goruntu_al()
 	int sonuc;
 	cv::Mat goruntu_RGB;
 
-	baglanti_kur(&sonuc);
+	kamera_baglanti_kur(&sonuc);
 	if (sonuc == 0)
 	{
 		syslog(LOG_INFO, "%s(): Kamera acilamadi.", __func__);

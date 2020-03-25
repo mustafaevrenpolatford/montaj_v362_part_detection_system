@@ -19,7 +19,7 @@ const char *video_stream_adresi = "rtsp://admin:Test1234@10.14.37.205:80";
 int sonuc;
 cv::VideoCapture capture;
 
-void baglanti_kur(int *sonuc)
+void kamera_baglanti_kur(int *sonuc)
 {
 	capture.set(CAP_PROP_BUFFERSIZE, 1);
 	int frameRate = capture.get(CAP_PROP_FPS);
