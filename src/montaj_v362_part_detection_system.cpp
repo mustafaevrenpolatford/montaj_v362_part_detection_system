@@ -42,7 +42,6 @@ void mosq_bitir(struct mosquitto *mosq);
 int counter = 0;
 int cita_sonucu = 0;
 const char ayrac = ':';
-const char *pvs_gelen_veri_isimleri[] = {"VIN_NUMBER", "waste", "date", "hour", "minute", "second", "colour_car", "rim", "front_door_handle", "mirror_garnish", "rear_door_handle", "side_moulding"};
 const char *video_stream_adresi = "rtsp://admin:Test1234@10.14.37.205:80";
 const char *goruntu_kayit_dizini = "/home/gi/montaj_v362/sonuclar";
 cv::VideoCapture capture;
@@ -185,7 +184,7 @@ int main(int argc, char const *argv[])
 		syslog(LOG_INFO, "%s(): acknowledge: '%c' gonderildi.\n", __func__, ack);
 		close(conn_fd);
 		free(pvs_degerler);
-		syslog(LOG_INFO, "%s(): PVS_cita_bilgisi: '%s'.", __func__, pvs_degerler[11]);
+		
 	}
 
 	return 0;
@@ -409,11 +408,11 @@ char **str_split(char *a_str, const char a_delim)
 		assert(idx == count - 1);
 		*(result + idx) = 0;
 
-		for (i = 0; i < count - 1; ++i)
+		/*for (i = 0; i < count - 1; ++i)
 		{
 			syslog(LOG_INFO, "%s(): %s: '%s'", __func__, pvs_gelen_veri_isimleri[i], result[i]);
 		}
-		return result;
+		return result;*/
 	}
 
 	return NULL;
