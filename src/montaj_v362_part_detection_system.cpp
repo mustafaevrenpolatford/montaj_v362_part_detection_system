@@ -58,7 +58,7 @@ char mq_topic[] = "montaj_gi";
 
 int main(int argc, char const *argv[])
 {
-	char **degerler;
+	char **pvs_degerler;
 	int sonuc;
 	int ack = (char)6;
 	
@@ -128,14 +128,14 @@ int main(int argc, char const *argv[])
 		syslog(LOG_INFO, "%s(): PVS gelen data: '%s' , valread: '%d'", __func__, buffer_server, valread);
 
 		//gelen datayi "ayrac" a gore ayristir.
-		degerler = str_split(buffer_server, ayrac);
-		if (degerler == NULL)
+		pvs_degerler = str_split(buffer_server, ayrac);
+		if (pvs_degerler == NULL)
 		{
-			syslog(LOG_INFO, "%s(): degerler==NULL.", __func__);
+			syslog(LOG_INFO, "%s(): pvs_degerler==NULL.", __func__);
 			send(conn_fd, &ack, 1, 0);
 			syslog(LOG_INFO, "%s(): acknowledge: '%c' gonderildi.\n", __func__, ack);
 			close(conn_fd);
-			free(degerler);
+			free(pvs_degerler);
 			continue;
 		}
 
@@ -146,14 +146,14 @@ int main(int argc, char const *argv[])
 			send(conn_fd, &ack, 1, 0);
 			syslog(LOG_INFO, "%s(): acknowledge: '%c' gonderildi.\n", __func__, ack);
 			close(conn_fd);
-			free(degerler);
+			free(pvs_degerler);
 			continue;
 		}
 
 		std::string kamera_kontrol_sonucu = goruntuyu_isle(goruntu_RGB);
 
 		syslog(LOG_INFO, "%s(): kamera_kontrol_sonucu: '%s'", __func__, kamera_kontrol_sonucu.c_str());
-		if ((kamera_kontrol_sonucu == "Ayni" && strstr(degerler[11], "CITA=RENKLI")) || (kamera_kontrol_sonucu == "Farkli" && !strstr(degerler[11], "CITA=RENKLI")))
+		if ((kamera_kontrol_sonucu == "Ayni" && strstr(pvs_degerler[11], "CITA=RENKLI")) || (kamera_kontrol_sonucu == "Farkli" && !strstr(pvs_degerler[11], "CITA=RENKLI")))
 		{
 			sonucText = "Sus citasi dogru takildi";
 			syslog(LOG_INFO, "Sus citasi basarili bir sekilde takildi.***");
@@ -164,7 +164,7 @@ int main(int argc, char const *argv[])
 		}
 		else
 		{
-			std::string pvs_cita_bilgisi = degerler[11];
+			std::string pvs_cita_bilgisi = pvs_degerler[11];
 			sonucText = "Sus citasi yanlis takildi. PVS:" + pvs_cita_bilgisi;
 			syslog(LOG_INFO, "***Kamera kontrol sonucu ile PVS bilgileri farkli. Lutfen sus citasini kontrol edin.***");
 			cita_sonucu = 0;
@@ -184,8 +184,8 @@ int main(int argc, char const *argv[])
 		send(conn_fd, &ack, 1, 0);
 		syslog(LOG_INFO, "%s(): acknowledge: '%c' gonderildi.\n", __func__, ack);
 		close(conn_fd);
-		free(degerler);
-		syslog(LOG_INFO, "%s(): PVS_cita_bilgisi: '%s'.", __func__, degerler[11]);
+		free(pvs_degerler);
+		syslog(LOG_INFO, "%s(): PVS_cita_bilgisi: '%s'.", __func__, pvs_degerler[11]);
 	}
 
 	return 0;
