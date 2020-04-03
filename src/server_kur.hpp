@@ -42,4 +42,3 @@ int server_kur(int *server_fd, struct sockaddr_in *address_ptr, int addrlen, int
 }
 
 #endif
-

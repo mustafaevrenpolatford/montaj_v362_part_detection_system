@@ -4,6 +4,8 @@
 
 struct mosquitto *mosq_baslat(char *mq_sunucu, char *mq_port, char *mq_kullanici, char *mq_sifre, char *mq_id)
 {
+
+
 ///mqtt bilgileri system loguna yazan kod baslangic///
     syslog(LOG_INFO, "%s(): -- mqtt bilgileri ---", __func__);
 	syslog(LOG_INFO, "%s(): mq_sunucu: '%s'", __func__, mq_sunucu);
@@ -11,9 +13,10 @@ struct mosquitto *mosq_baslat(char *mq_sunucu, char *mq_port, char *mq_kullanici
 	syslog(LOG_INFO, "%s(): mq_kullanici: '%s'", __func__, mq_kullanici);
 	syslog(LOG_INFO, "%s(): mq_sifre: '%s'", __func__, mq_sifre);
 	syslog(LOG_INFO, "%s(): mq_id: '%s'", __func__, mq_id);
-	syslog(LOG_INFO, "%s(): mq_topic: '%s'", __func__, mq_topic);
+	//syslog(LOG_INFO, "%s(): mq_topic: '%s'", __func__, mq_topic);
 	syslog(LOG_INFO, "%s(): -- mqtt bilgileri sonu ---", __func__);
 ///mqtt bilgileri system loguna yazan kod bitis///
+
 
 	struct mosquitto *mosq;
 	/*

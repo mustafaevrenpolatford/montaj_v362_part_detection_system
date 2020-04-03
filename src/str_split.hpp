@@ -48,10 +48,10 @@ char **str_split(char *a_str, const char a_delim)
 		assert(idx == count - 1);
 		*(result + idx) = 0;
 
-		for (i = 0; i < count - 1; ++i)
+		/*for (i = 0; i < count - 1; ++i)
 		{
 			syslog(LOG_INFO, "%s(): %s: '%s'", __func__, pvs_gelen_veri_isimleri[i], result[i]);
-		}
+		}*/
 		return result;
 	}
 

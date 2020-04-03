@@ -8,6 +8,11 @@
 #include"mosq_bitir.hpp"
 #include"server_kur.hpp"
 #include"str_split.hpp"
+#include"kontrol_fonksiyonu_yan_cita.hpp"
+#include"kontrol_fonksiyonu_on_kapi.hpp"
+#include"kontrol_fonksiyonu_kayar_kapi.hpp"
+#include"kontrol_fonksiyonu_ayna_kapagi.hpp"
+
 
 
 using namespace std;
@@ -101,14 +106,14 @@ while (1)
 	}
 
 	valread = read(conn_fd, buffer_server, 1024);// read fonksiyonu pvsten gelen bilgileri buffer_server degiskenine yazar
-    syslog(LOG_INFO, "%s(): PVS gelen data: '%s' , valread: '%d'", __func__, buffer_server, valread);// pvsten gelen data sistem log kayÄ±tlarÄ±na yazÄ±lÄ±r
+    syslog(LOG_INFO, "%s(): PVS gelen data: '%s' , valread: '%d'", __func__, buffer_server, valread);// pvsten gelen data sistem log kayýtlarýna yazýlýr
 
 /// Server baglantisi ve pvsten data okuma kodlari bitis///
 
 ///Pvsten gelen kodlarin ayristirilmasi ve pvse acknowledge gonderme kodlari baslangic///
 
     const char ayrac = ':';
-    pvs_degerler = str_split(buffer_server, ayrac);//pvsten gelen veriler "pvs_degerler" arrayine yazÄ±lÄ±r
+    pvs_degerler = str_split(buffer_server, ayrac);//pvsten gelen veriler "pvs_degerler" arrayine yazýlýr
 		if (pvs_degerler == NULL)
 		{
 			syslog(LOG_INFO, "%s(): pvs_degerler==NULL.", __func__);
