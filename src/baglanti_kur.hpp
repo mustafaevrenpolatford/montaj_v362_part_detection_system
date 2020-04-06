@@ -1,10 +1,14 @@
+  
 #ifndef _BAGLANTI_KUR_
 #define _BAGLANTI_KUR_
 
-#include "includelar.h"
+#include "includelar.hpp"
 
-extern const char *video_stream_adresi = "rtsp://admin:Test1234@10.14.37.205:80";
+const char *video_stream_adresi = "rtsp://admin:Test1234@10.14.37.205:80";
+using namespace cv;
+using namespace std;
 
+cv::VideoCapture capture;
 void baglanti_kur(int *sonuc)
 {
 	capture.set(CAP_PROP_BUFFERSIZE, 1);

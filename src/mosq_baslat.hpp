@@ -1,20 +1,24 @@
 #ifndef _MOSQ_BASLAT_
 #define _MOSQ_BASLAT_
+#include "includelar.hpp"
 
-#include"includelar.h"
-
-struct mosquitto *mosq_baslat()
+struct mosquitto *mosq_baslat(char *mq_sunucu, char *mq_port, char *mq_kullanici, char *mq_sifre, char *mq_id)
 {
-    struct mosquitto *mosq = NULL;
-    bool mq_baglantisi_kur = 1;
-    char mq_sunucu[] = "10.20.5.248";
-    char mq_port[] = "1883";
-    char mq_kullanici[] = "sms_vekil";
-    char mq_sifre[] = "sms_vekil_sifre";
-    char *mq_id = NULL;
-    char mq_topic[] = "montaj_gi";
-	struct mosquitto *mosq;
 
+
+///mqtt bilgileri system loguna yazan kod baslangic///
+    syslog(LOG_INFO, "%s(): -- mqtt bilgileri ---", __func__);
+	syslog(LOG_INFO, "%s(): mq_sunucu: '%s'", __func__, mq_sunucu);
+	syslog(LOG_INFO, "%s(): mq_port: '%s'", __func__, mq_port);
+	syslog(LOG_INFO, "%s(): mq_kullanici: '%s'", __func__, mq_kullanici);
+	syslog(LOG_INFO, "%s(): mq_sifre: '%s'", __func__, mq_sifre);
+	syslog(LOG_INFO, "%s(): mq_id: '%s'", __func__, mq_id);
+	//syslog(LOG_INFO, "%s(): mq_topic: '%s'", __func__, mq_topic);
+	syslog(LOG_INFO, "%s(): -- mqtt bilgileri sonu ---", __func__);
+///mqtt bilgileri system loguna yazan kod bitis///
+
+
+	struct mosquitto *mosq;
 	/*
 	 * Mosquitto kutuphanesi yuklenir.
 	 */

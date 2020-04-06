@@ -1,7 +1,8 @@
 #ifndef _KAMERADAN_GORUNTU_AL_
 #define _KAMERADAN_GORUNTU_AL_
 
-#include "includelar.h"
+#include "includelar.hpp"
+#include "baglanti_kur.hpp"
 
 cv::Mat kameradan_goruntu_al()
 {
@@ -18,14 +19,6 @@ cv::Mat kameradan_goruntu_al()
 
 	capture.read(goruntu_RGB);
 
-	if (counter < 10000)
-	{
-		counter++;
-	}
-	else
-	{
-		counter = 0;
-	}
 
 	capture.release();
 	return goruntu_RGB;

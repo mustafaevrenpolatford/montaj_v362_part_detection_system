@@ -1,9 +1,6 @@
-
 #ifndef _SERVER_KUR_
 #define _SERVER_KUR_
-
-#include"includelar.h"
-extern int pvs_Server_PORT  = 3334;
+#include "includelar.hpp"
 
 int server_kur(int *server_fd, struct sockaddr_in *address_ptr, int addrlen, int PORT)
 {

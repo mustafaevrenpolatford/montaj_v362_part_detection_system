@@ -1,11 +1,7 @@
 #ifndef _STR_SPLIT_
 #define _STR_SPLIT_
+#include "includelar.hpp"
 
-
-#include"includelar.h"
-
-extern const char ayrac = ':';
-extern const char *pvs_gelen_veri_isimleri[] = {"VIN_NUMBER", "waste", "date", "hour", "minute", "second", "colour_car", "rim", "front_door_handle", "mirror_garnish", "rear_door_handle", "side_moulding"};
 
 char **str_split(char *a_str, const char a_delim)
 {
@@ -52,10 +48,10 @@ char **str_split(char *a_str, const char a_delim)
 		assert(idx == count - 1);
 		*(result + idx) = 0;
 
-		for (i = 0; i < count - 1; ++i)
+		/*for (i = 0; i < count - 1; ++i)
 		{
 			syslog(LOG_INFO, "%s(): %s: '%s'", __func__, pvs_gelen_veri_isimleri[i], result[i]);
-		}
+		}*/
 		return result;
 	}
 

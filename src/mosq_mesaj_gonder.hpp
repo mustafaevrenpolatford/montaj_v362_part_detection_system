@@ -1,7 +1,6 @@
 #ifndef _MOSQ_MESAJ_GONDER_
 #define _MOSQ_MESAJ_GONDER_
-
-#include "includelar.h"
+#include "includelar.hpp"
 
 void mosq_mesaj_gonder(struct mosquitto *mosq, char *mesaj, char *topic, bool *mq_baglantisi_kur)
 {
@@ -16,5 +15,4 @@ void mosq_mesaj_gonder(struct mosquitto *mosq, char *mesaj, char *topic, bool *m
 	//  are finished.
 	usleep(1000); // cpu
 }
-
 #endif

@@ -1,7 +1,6 @@
 #ifndef _MOSQ_BITIR_
 #define _MOSQ_BITIR_
-
-#include "includelar.h"
+#include "includelar.hpp"
 
 void mosq_bitir(struct mosquitto *mosq)
 {
@@ -10,5 +9,4 @@ void mosq_bitir(struct mosquitto *mosq)
 	mosquitto_destroy(mosq);
 	mosquitto_lib_cleanup();
 }
-
 #endif
